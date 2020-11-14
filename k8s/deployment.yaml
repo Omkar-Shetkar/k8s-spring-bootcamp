@@ -21,4 +21,16 @@ spec:
       - image: localhost:5000/apps/demo
         name: demo
         resources: {}
+        readinessProbe:
+            httpGet:
+              port: 8080
+              path: /actuator/health/readiness
+        livenessProbe:
+            httpGet:
+              port: 8080
+              path: /actuator/health/liveness
+        lifecycle:
+            preStop:
+              exec:
+                 command: ["sh", "-c", "sleep 10"]
 status: {}
