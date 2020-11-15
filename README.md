@@ -70,7 +70,6 @@ For k3s/microk8s
 
 ### Integration with Skaffold
 
-`
 deploy:
   kustomize:
     paths: ["kustomize/base"]
@@ -79,7 +78,7 @@ profiles:
     deploy:
       kustomize:
         paths: ["kustomize/qa"]
-`
+
 
 `$ skaffold dev --port-forward`
 `$ skaffold dev -p qa --port-forward`
