@@ -83,3 +83,8 @@ profiles:
 
 `$ skaffold dev --port-forward`
 `$ skaffold dev -p qa --port-forward`
+
+### Externalized Configuration
+
+`$ kubectl create configmap log-level --from-literal=LOGGING_LEVEL_ORG_SPRINGFRAMEWORK=DEBUG`
+
