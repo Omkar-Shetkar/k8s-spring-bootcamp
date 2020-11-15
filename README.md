@@ -69,7 +69,7 @@ For k3s/microk8s
 `$ kustomize build kustomize/qa | kubectl delete -f -`
 
 ### Integration with Skaffold
-```
+```yaml
 deploy:
   kustomize:
     paths: ["kustomize/base"]
