@@ -54,3 +54,32 @@ For k3s/microk8s
 `$ skaffold dev --port-forward`
 
 `$ skaffold debug --port-forward`
+
+### Using Kustomize
+
+`$ mkdir -p kustomize/base
+ $ mv k8s/* kustomize/base
+ $ rm -Rf k8s`
+
+`$ kustomize build ./kustomize/base`
+
+`$ kustomize build ./kustomize/qa`
+
+`$ kustomize build kustomize/qa | kubectl apply -f -`
+`$ kustomize build kustomize/qa | kubectl delete -f -`
+
+### Integration with Skaffold
+
+`
+deploy:
+  kustomize:
+    paths: ["kustomize/base"]
+profiles:
+  - name: qa
+    deploy:
+      kustomize:
+        paths: ["kustomize/qa"]
+`
+
+`$ skaffold dev --port-forward`
+`$ skaffold dev -p qa --port-forward`
