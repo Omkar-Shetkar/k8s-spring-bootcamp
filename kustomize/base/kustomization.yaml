@@ -4,3 +4,8 @@ kind: Kustomization
 resources:
   - service.yaml
   - deployment.yaml
+
+configMapGenerator:
+  - name: k8s-demo-app-config
+    files:
+      - application.yaml

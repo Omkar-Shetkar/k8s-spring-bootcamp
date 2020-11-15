@@ -17,13 +17,14 @@ spec:
       labels:
         app: k8s-demo-app
     spec:
+      volumes:
+        - name: config-volume
+          configMap:
+            name: k8s-demo-app-config
       containers:
       - image: localhost:5000/apps/demo
         name: demo
         resources: {}
-        envFrom:
-          - configMapRef:
-              name: log-level
         readinessProbe:
             httpGet:
               port: 8080
@@ -32,6 +33,9 @@ spec:
             httpGet:
               port: 8080
               path: /actuator/health/liveness
+        volumeMounts:
+          - name: config-volume
+            mountPath: /workspace/config
         lifecycle:
             preStop:
               exec:
